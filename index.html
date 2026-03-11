@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+     <!-- Tailwind+CSS -->
+     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+
+     <!-- Font Awesome -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+
+     <link rel="stylesheet" href="/style/style.css">
+
+</head>
+<body>
+   <div class="navbar bg-base-100 shadow-sm">
+  <div class="navbar-start">
+    <div class="dropdown">
+      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+      </div>
+      <ul
+        tabindex="-1"
+        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+        <li ><a href="" class=><i class="fa-brands fa-leanpub"></i>Item 1</a></li>
+     <li ><a href="" class=""><i class="fa-brands fa-leanpub"></i>Item 1</a></li>
+      <li ><a href="" class=""><i class="fa-brands fa-leanpub"></i>Item 1</a></li>
+      </ul>
+    </div>
+    <a href="" class=" flex m-0 items-center gap-1"> <span class = "font-bold">English</span> <span><img src="./assets/logo.png" alt="Flag"> </span>
+    <span class = "font-bangla font-semibold">জানালা</span></a>
+  </div>
+  <div class="navbar-end hidden lg:flex">
+    <ul class="menu menu-horizontal px-1 gap-3 ">
+      <li ><a href="" class="btn btn-outline btn-primary"><i class="fa-brands fa-leanpub"></i>Item 1</a></li>
+     <li ><a href="" class="btn btn-outline btn-primary"><i class="fa-brands fa-leanpub"></i>Item 1</a></li>
+      <li ><a href="" class="btn btn-outline btn-primary"><i class="fa-brands fa-leanpub"></i>Item 1</a></li>
+    </ul>
+  </div>
+  
+</div>
+
+<section class ="content flex flex-col-reverse md:flex-row md:gap-10 justify-between items-center ">
+    <div class="flex-1 px-6 text-center md:text-left">
+    <h2 class="text-3xl font-bold mb-4"><span class="text-blue-500">English</span> is Eassy!!</h2>
+    <p class="text-gray-400 text-lg text-justify">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
+    </div>
+    <div class="flex-1">
+        <img  class= "w-4/5 h-auto" src="./assets/hero-student.png" alt="Student Image">
+    </div>
+</section>
+
+<section class="px-6 py-5">
+  <form class="flex flex-col gap-2 max-w-sm"> 
+    
+    <div>
+      <input type="text" class="input validator w-full" required placeholder="Enter Your name" 
+        pattern="[A-Za-z][A-Za-z0-9\-]*" minlength="3" maxlength="30" />
+      <p class="validator-hint mt-1 text-xs">3-30 chars (letters/numbers/dash)</p>
+    </div>
+
+    <div>
+      <input type="password" class="input validator w-full" required placeholder="**********" 
+        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+      <div class="validator-hint mt-1 text-xs">
+        8+ chars: 1 Number, 1 Lower, 1 Upper
+      </div>
+    </div>
+
+    <button class="btn btn-primary w-fit px-8" type="submit">Submit form</button>
+  </form>
+</section>
+
+<section class="m-5">
+    
+   <h2 class="text-3xl font-bold mb-4 text-center"><span class="text-blue-500">Let's</span> Learn Vocabularly</h2>    
+  <div id = "level-container" class = "flex flex-row justify-center flex-wrap gap-4 px-6 py-5">
+    <!-- Level items will be dynamically inserted here -->
+  </div>
+  </section>
+
+  <section>
+    <div id="lesson-container" class="grid grid-cols-1 md:grid-cols-2 gap-3 lg:grid-cols-3 px-6 py-5">
+      <!-- Lesson items will be dynamically inserted here  -->
+        <div class = "text-center col-span-full m-10 space-y-4 bg-gray-100 p-6 rounded-lg">
+       <h2 class="text-l font-semibold font-bangla">আপনি এখনো কোন Lesson Select করেন ন<br></h2>
+       <p class="text-2xl font-bold text-center font-bangla">একটি Lesson Select করুন।</p>
+       </div>
+       
+    </div>
+  </section>
+ <!-- You can open the modal using ID.showModal() method -->
+<!-- <button class="btn" onclick="my_modal_3.showModal()">open modal</button> -->
+<dialog id="info_modal" class="modal">
+  <div class="modal-box">
+
+    <form method="dialog">
+      <button class="btn btn-sm btn-primary btn-ghost absolute right-2 top-2">
+        Close
+      </button>
+    </form>
+
+    <div id="modal-content" class="space-y-4">
+      <!-- JS will insert content here -->
+    </div>
+
+  </div>
+</dialog>
+
+  
+
+
+
+<script src="./script/sc.js"></script>
+
+     
+</body>
+</html>
