@@ -42,9 +42,9 @@
   </div>
   <div class="navbar-end hidden lg:flex">
     <ul class="menu menu-horizontal px-1 gap-3 ">
-      <li ><a href="" class="btn btn-outline btn-primary"><i class="fa-brands fa-leanpub"></i>Item 1</a></li>
-     <li ><a href="" class="btn btn-outline btn-primary"><i class="fa-brands fa-leanpub"></i>Item 1</a></li>
-      <li ><a href="" class="btn btn-outline btn-primary"><i class="fa-brands fa-leanpub"></i>Item 1</a></li>
+      <li ><a href="" class="btn btn-outline btn-primary"><i class="fa-brands fa-leanpub"></i>FAQ</a></li>
+     <li ><a href="" class="btn btn-outline btn-primary"><i class="fa-brands fa-leanpub"></i>Learn</a></li>
+      <li ><a href="" class="btn btn-outline btn-primary"><i class="fa-brands fa-leanpub"></i>LogOUT</a></li>
     </ul>
   </div>
   
@@ -88,6 +88,21 @@
     <!-- Level items will be dynamically inserted here -->
   </div>
   </section>
+
+ <section id="loading-spinner" class="flex justify-center items-center my-10 hidden">
+  <span class="loading loading-spinner loading-xl"></span>
+</section>
+  
+<div class="join flex items-center justify-center gap-4 mt-10">
+  <div>
+    <label class="input validator join-item">
+      
+      <input id="search" type="text" placeholder="Search Vocabulaly" required />
+    </label>
+    <div class="validator-hint hidden">Enter valid email address</div>
+  </div>
+  <button id="submit-search-btn" class="btn btn-primary ">submit</button>
+</div>
 
   <section>
     <div id="lesson-container" class="grid grid-cols-1 md:grid-cols-2 gap-3 lg:grid-cols-3 px-6 py-5">

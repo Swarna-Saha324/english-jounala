@@ -1,81 +1,14 @@
-// const UserData = () => {
-//     const url = "https://openapi.programming-hero.com/api/levels/all";
-//     fetch(url)
-//         .then(response => response.json())
-//         .then(json => displayUser(json))
-//         .catch(err => console.error("Fetch error:", err));
-// };
+const manageLoadingSpinner = (isLoading) => {
+    const loadingSpinner = document.querySelector("#loading-spinner");
 
-// const displayUser = (user) => {
-//     console.log(user); // Look at your console; you'll see 'data' is the array
-    
-//     const levelsContainer = document.getElementById("level-container");
-    
-//     // Safety Check: If the HTML element is missing, stop here
-//     if (!levelsContainer) {
-//         console.error("Missing element with ID 'level-container' in your HTML!");
-//         return;
-//     }
-
-//     levelsContainer.innerHTML = "";
-
-//     // Use user.data because the API wraps the array inside a 'data' property
-//     user.data.forEach(ele => {
-//         const levelDiv = document.createElement("div");
-        
-//         levelDiv.innerHTML = `
-//             <button onclick="showLesson(${ele.level_no})" class="btn btn-primary">
-//                 <i class="fa-brands fa-leanpub"></i> Lesson ${ele.level_no}
-//             </button>
-//         `;
-
-//         levelsContainer.appendChild(levelDiv);
-//     });
-// };
-// const showLesson = (levelNo) => {
-//     // alert(`You clicked on Lesson ${levelNo}`);
-//         const url = `https://openapi.programming-hero.com/api/level/${levelNo}`;
-//         // alert(`Fetching details for Lesson ${url}...`);
-//         fetch(url)
-//             .then(response => response.json())
-//             .then(data => {
-//                 // Handle the fetched data for the specific lesson
-//                displayShowLesson(data.data);
-//             });
-// };
-
-// const displayShowLesson = (information) => {
-//     const lessonContainer = document.getElementById("lesson-container");
-//     lessonContainer.innerHTML = " "; // Clear previous content
-//     if (!information || information.length === 0) {
-//         lessonContainer.innerHTML = `
-//         <div class = "text-center col-span-full m-10 space-y-4 bg-gray-100 p-6 rounded-lg">
-//         <img class="mx-auto" src="./assets/alert-error.png" alt="Error">
-//        <h2 class="text-l font-semibold font-bangla">এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।<br></h2>
-//        <p class="text-2xl font-bold text-center font-bangla">নেক্সট Lesson এ যান</p>
-//        </div>
-//        `
-//         return; // Exit if there's no information to display
-//     }
-//     information.forEach((element) => {
-//         console.log(element); // Check the structure of each element in the console
-//     const lessonDiv = document.createElement("div");
-//     lessonDiv.innerHTML = `<div class ="p-10 text-center space-y-3 bg-gray-100 rounded-lg shadow-md m-5">
-//        <div class="">
-//         <h2 class= "text-2xl font-bold" >${element.word ? element.word : "Not FOUND"}
-//         </h2>
-//           <p class="text-xl font-semibold">Meaning/Prononciation</p>
-//           <p class="font-semibold font-bangla">${element.meaning ? element.meaning :"Not Found"}/${element.pronunciation ? element.pronunciation :"Not Found"}</p>
-//        </div>
-//        <div class="flex justify-between">
-//         <i class="fa-solid fa-circle-info"></i>
-//         <i class="fa-solid fa-volume-high"></i>
-//        </div>
-//        </div>`;
-//     lessonContainer.append(lessonDiv);
-// }
-//     )};
-// UserData(); 
+    if (isLoading) {
+        loadingSpinner.classList.remove("hidden");  // spinner show
+        document.getElementById("lesson-container").classList.add("hidden"); 
+    } else {
+        loadingSpinner.classList.add("hidden");   // spinner hide
+        document.getElementById("lesson-container").classList.remove("hidden");
+    }
+};
 
 const loadLessons = () => {
     const url = "https://openapi.programming-hero.com/api/levels/all";
@@ -107,7 +40,10 @@ const removeActiveClass = () => {
     });
 }
 
+
+
 const showWord = (id) => {
+    manageLoadingSpinner(true);
     console.log(id);
   const url = `https://openapi.programming-hero.com/api/level/${id}`;
 
@@ -144,10 +80,15 @@ const displayVocabularyInfo = (vocabInfo) => {
     modalContent.innerHTML = `
    
         <h3 class="font-bold text-lg">${vocabInfo.word}</h3>
-        <p class="py-4">Meaning: ${vocabInfo.meaning}</p>
-        <p class="py-4">Pronunciation: ${vocabInfo.pronunciation}</p>
+        <p class="py-0 font-bold">Meaning:</p> ${vocabInfo.meaning}
+        <p class="py-1">Pronunciation:</p> ${vocabInfo.pronunciation}
         <p> Example <br></p>
         <p> ${vocabInfo.sentence}</p>
+        <div class="">
+         <h2 class="font-bold text-xl">Synonyms</h2>
+        ${vocabInfo.synonyms.map(synonym => `<button class="btn btn-sm btn-ghost m-1">${synonym}</button>`).join('')}
+        ${vocabInfo.synonyms.length === 0 ? "<p>No synonyms available</p>" : ""}
+        </div>
 
         
         
@@ -158,16 +99,18 @@ const displayVocabularyInfo = (vocabInfo) => {
 }
 const displayShowLesson = (showAll) => {
     const lessonContainer = document.getElementById("lesson-container");
+   
     
     lessonContainer.innerHTML = ""; // Clear previous content
     if(!showAll || showAll.length === 0)
         {
              lessonContainer.innerHTML = ` <div class = "text-center col-span-full m-10 space-y-4 bg-gray-100 p-6 rounded-lg">
         <img class="mx-auto" src="./assets/alert-error.png" alt="Error">
-       <h2 class="text-l font-semibold font-bangla">আপনি এখনো কোন Lesson Select করেন ন<br></h2>
+       <h2 class="text-l font-semibold font-bangla">এখনও কোনো লেসন যোগ করা হয়নি। <br></h2>
        <p class="text-2xl font-bold text-center font-bangla">একটি Lesson Select করুন।</p>
        </div>
        `;
+       manageLoadingSpinner(false);
         return; // Exit if there's no data to display
         }
        
@@ -178,23 +121,56 @@ const displayShowLesson = (showAll) => {
         
         const lessonDiv = document.createElement("div");
        
-        lessonDiv.innerHTML = `<div class ="p-10 text-center space-y-3 bg-gray-100 rounded-lg shadow-md m-5">
-       <div class="">
-        <h2 class= "text-2xl font-bold" >${show.word ? show.word : "শব্দ পাওয়া যায়নি"}
-        </h2>
-          <p class="text-xl font-semibold">Meaning/Prononciation</p>
-          <p class="font-semibold font-bangla">${show.meaning ? show.meaning :"অর্থ পাওয়া যায়নি"}/${show.pronunciation ? show.pronunciation :"উচ্চারণ পাওয়া যায়নি"}</p>
-       </div>
-       <div class="flex justify-between">
-      <button onclick="showInfoModal(${show.id})" class="btn btn-ghost">
-        <i class="fa-solid fa-circle-info"></i>
-      </button>
-        <i class="fa-solid fa-volume-high"></i>
-       </div>
-       </div>`;
+       lessonDiv.innerHTML = `
+<div class="p-10 text-center space-y-3 bg-gray-100 rounded-lg shadow-md m-5">
+
+<div>
+<h2 class="text-2xl font-bold">
+${show.word ? show.word : "শব্দ পাওয়া যায়নি"}
+</h2>
+
+<p class="text-xl font-semibold">Meaning/Pronunciation</p>
+
+<p class="font-semibold font-bangla">
+${show.meaning ? show.meaning :"অর্থ পাওয়া যায়নি"} /
+${show.pronunciation ? show.pronunciation :"উচ্চারণ পাওয়া যায়নি"}
+</p>
+</div>
+
+<div class="flex justify-between items-center mt-4">
+
+<button onclick="showInfoModal(${show.id})" class="btn btn-ghost">
+<i class="fa-solid fa-circle-info"></i>
+</button>
+
+<button onclick="pronounceWord('${show.word ? show.word : ""}')" class="btn btn-ghost">
+<i class="fa-solid fa-volume-high"></i>
+</button>
+
+</div>
+
+</div>
+`;
 
          lessonContainer.appendChild(lessonDiv);
     }
+        manageLoadingSpinner(false);
 }
 loadLessons();
-
+document.getElementById("submit-search-btn").addEventListener("click", function() {
+    removeActiveClass();
+    const searchInput = document.getElementById("search").value.trim().toLowerCase();
+    console.log(searchInput);
+    fetch("https://openapi.programming-hero.com/api/words/all")
+        .then(response => response.json())
+        .then(data => {
+            const allWords = data.data;
+            const filteredWords = allWords.filter(word => word.word.toLowerCase().includes(searchInput));
+            displayShowLesson(filteredWords);
+        });
+});
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English
+  window.speechSynthesis.speak(utterance);
+}
