@@ -1,110 +1,79 @@
-# ENGLISH <img width="25px" src="./assets/logo.png" /> JANALA
+# 📘 English Janala – Vocabulary Learning App
+
+English Janala is an interactive vocabulary learning web application that helps users improve their English skills by exploring words level-by-level. Users can view meanings, pronunciation, examples, and save their favorite words.
 
 ---
 
-## ⚡ API Endpoints
+## 🌐 Live Demo
 
-1. Get ⚡ All Levels
-
-```bash
-https://openapi.programming-hero.com/api/levels/all
-```
-
-1. Get ⚡ Words by Levels <br/>
-   https:// openapi.programming-hero.com/api/level/{id}
-
-```bash
-https://openapi.programming-hero.com/api/level/5
-```
-
-1. Get ⚡ Words Detail <br/>
-   https:// openapi.programming-hero.com/api/word/{id}
-
-```bash
-https://openapi.programming-hero.com/api/word/5
-```
-
-1. Get ⚡ All Words <br/>
-
-```bash
-https://openapi.programming-hero.com/api/words/all
-```
-
-# Work To do
-
-### 1. Show Levels on The UI
-
-- [ ] Show a center-aligned heading as Figma
+🔗 https://swarna-saha324.github.io/english-jounala/
 
 ---
 
-- [ ] Create dynamically generated buttons from **API-01** for each lesson
-- [ ] Lesson Buttons will be displayed on page load
+
+
+
+
+# Project Screenshot
+
+![Project Screenshot](https://i.ibb.co.com/0R9dPG2g/Screenshot-2026-03-21-000730.png)
 
 ---
 
-### 2. Show Word Cards Based on Level
+## ⚙️ Technologies Used
 
-- [ ] Show a default text that will be displayed in the Vocabulary section initially
-- [ ] on Clicking a Specific Lesson Button Load All the words from **API-02**
-- [ ] Display all words for a selected lesson in a card format, showing:
-
-  - [ ] Word
-  - [ ] Word meaning & pronunciation
-  - [ ] Two buttons with relevant icons as per Figma
-
-- [ ] Show **\*No Word Found** message if no words exist for a lesson
+- HTML5  
+- CSS3  
+- JavaScript (ES6)  
+- REST API  
+- Browser SpeechSynthesis API  
 
 ---
 
-- [ ] Create functionality to highlight the active lesson button
+## ✨ Key Features
+
+- 📚 Dynamic Lesson Levels (Loaded from API)
+- 🧠 Vocabulary Cards (Word, Meaning, Pronunciation)
+- 🎯 Active Level Highlight
+- 🔍 Search Functionality
+- 📦 Word Details Modal (Example, Synonyms)
+- ❤️ Save Words Feature
+- 🔊 Voice Pronunciation
+- ⏳ Loading Spinner
+- ⚠️ Error Handling (No data / invalid values)
 
 ---
 
-### 3. Use Different Color on The Active Level Button
+## 🔗 API Endpoints
 
-- [ ] After Successfully Loading words of a level , diffirentiate the button so user can understand which button is active
+#### Get All Levels                                                      https://openapi.programming-hero.com/api/levels/all       
+#### Get Words by Level         https://openapi.programming-hero.com/api/level/{id}
 
-### 4. Vocabulary Details
+Example:
+https://openapi.programming-hero.com/api/level/5     
+#### Get All Words     https://openapi.programming-hero.com/api/words/all 
+---
 
-- [ ] Create functionality to open a modal when clicking the details icon
-- [ ] Data will be load from **API-03**
-- [ ] modal will displays:
-  - [ ] Word with pronunciation
-  - [ ] Example sentence
-  - [ ] Synonyms
-  - [ ] A "Complete Learning" button to close the modal
+## 📦 Dependencies
 
-### 5. Handling Invalid Data
+This project uses:
+- Vanilla JavaScript (No external libraries)
 
-- [ ] avoid displaying falsy values like `undefined` or `null`
-- [ ] display relevant words if no data is found
+---
 
-### 6. Loading Spinner
+## 🛠️ How to Run Locally
 
-- [ ] Create a loading spinner that will be display when vocabulary is loading from API
+1. Clone the repository:git clone https://github.com/Swarna-Saha324/english-jounala.git
+2. Navigate to the project folder: cd english-jounala 
+3. Open `index.html` in your browser
 
-### 7. Implement Search Functionality
+---
 
-- [ ] Take a input Box.
-- [ ] on Changing value It will Search word and show in the UI.
-- [ ] If anyone Do search reset active button
+## 🔊 Voice Pronunciation Function
 
-### 8. Save Word Feature
-
-- [ ] in the UI of Card add a button `Heart icon`
-- [ ] on Clicking it. Store the Word in the Saved Box
-- [ ] Show Saved words in a Different Section.
-
-### 9. Speak your Vocabularies
-
-- [ ] Create functionality for voice pronunciation of vocabulary words
-- [ ] Use below function and implement on clicking sound icon
-
-```js
+```javascript
 function pronounceWord(word) {
   const utterance = new SpeechSynthesisUtterance(word);
-  utterance.lang = "en-EN"; // English
+  utterance.lang = "en-EN";
   window.speechSynthesis.speak(utterance);
 }
-
